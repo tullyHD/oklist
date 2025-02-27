@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OK Shows</title>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 8pt;
+            line-height: 1.3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: black;
+            color: #cccccc;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 12pt;
+        }
+
+        .month-header {
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .date {
+            font-weight: bold;
+            color: white;
+            margin-bottom: 3px;
+        }
+
+        .band {
+            font-weight: bold;
+        }
+
+        .special-note {
+            font-style: italic;
+        }
+
+        .venue {
+            color: #aaaaaa;
+        }
+
+        .venue a {
+            color: #aaaaaa;
+            text-decoration: none;
+        }
+
+        .venue a:hover {
+            text-decoration: underline;
+        }
+
+        .details {
+            color: #888888;
+            margin-left: 4px;
+        }
+
+        .footer {
+            font-size: 7pt;
+            margin-top: 20px;
+            color: #666666;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 7pt;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OK Showlist</h1>
+
+        <div class="month-header">June 2025</div>
+        <ul>
+            <li>
+                <div class="date">Sunday, June 15th</div>
+                <div>
+                    <span class="band">Dance Gavin Dance “Return Of The Robot” Tour</span> -
+                    <span class="venue"><a href="https://criterionokc.com/" target="_blank">The Criterion</a></span>
+                    <span class="details">6:00 pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Wednesday, June 25th</div>
+                <div>
+                    <span class="band">Modest Mouse</span> -
+                    <span class="venue"><a href="https://criterionokc.com/" target="_blank">The Criterion</a></span>
+                    <span class="details">7:00 pm</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="month-header">May 2025</div>
+        <ul>
+            <li>
+                <div class="date">Tuesday, May 6th</div>
+                <div>
+                    <span class="band">Killswitch Engage - Tour 2025</span> -
+                    <span class="venue"><a href="https://criterionokc.com/" target="_blank">The Criterion</a></span>
+                    <span class="details">Doors: 6pm / Show: 8pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Friday, May 2nd</div>
+                <div>
+                    <span class="band">Jaira's Band</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$45, 7pm, Outdoor</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, May 7th</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(New Material)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$22, 8:30pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Monday, May 12th</div>
+                <div>
+                    <span class="band">Beach House Live 2025</span> -
+                    <span class="venue"><a href="https://criterionokc.com/" target="_blank">The Criterion</a></span>
+                    <span class="details">7:00 pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Monday, May 12th</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(Matinee)</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$15, 3pm, All Ages</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, May 14th</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(Album Preview)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$25, 8pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Saturday, May 17th</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(Album Release)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$35, 8pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Monday, May 19th</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(Vinyl Release Party)</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$18, 7pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, May 21st</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(Listening Party)</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$15, 7pm, All Ages</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Friday, May 23rd</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(DJ Set)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$10, 10pm, 21+</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Sunday, May 25th</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(Memorial Weekend)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$30, 8pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Wednesday, May 28th</div>
+                <div>
+                    <span class="band">Inside You</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$25, 9pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Thursday, May 29th</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(Acoustic Set)</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$25, 6pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Saturday, May 31st</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Utah Jazz</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">TBD</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="month-header">April 2025</div>
+        <ul>
+            <li>
+                <div class="date">Sunday, April 6th</div>
+                <div>
+                    <span class="band">Jaira's Band</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$30, 9pm, All Ages</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, April 9th</div>
+                <div>
+                    <span class="band">Inside You</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$20, 8pm, 21+</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Saturday, April 19th</div>
+                <div>
+                    <span class="band">Inside You</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$30, 9pm, All Ages</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, April 23rd</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(Acoustic)</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$24, 7:30pm, 18+</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Friday, April 25th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Phoenix Suns</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">TBD</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Sunday, April 27th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Sacramento Kings</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">TBD</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="month-header">March 2025</div>
+        <ul>
+            <li>
+                <div class="date">Thursday, March 20th</div>
+                <div>
+                    <span class="band">The Devil Wears Prada Metalcore Spring Break Tour</span> -
+                    <span class="venue"><a href="https://diamondballroom.com/" target="_blank">Diamond Ballroom</a></span>
+                    <span class="details">Doors: 6pm / Show: 7pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Thursday, March 20th</div>
+                <div>
+                    <span class="band">Bright Eyes</span> -
+                    <span class="venue"><a href="https://www.cainsballroom.com/" target="_blank">Cain’s Ballroom</a></span>
+                    <span class="details">Doors: 6pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Wednesday, March 5th</div>
+                <div>
+                    <span class="band">Jaira's Band</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$22, 9pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Saturday, March 8th</div>
+                <div>
+                    <span class="band">Jaira's Band</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$25, 7:30pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, March 12th</div>
+                <div>
+                    <span class="band">Inside You</span>
+                    <span class="special-note">(Unplugged)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$18, 7pm</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Friday, March 21st</div>
+                <div>
+                    <span class="band">Inside You</span> -
+                    <span class="venue">Antony's</span>
+                    <span class="details">$30, 9pm, All Ages</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Wednesday, March 26th</div>
+                <div>
+                    <span class="band">Jaira's Band</span>
+                    <span class="special-note">(with Special Guests)</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$25, 8:30pm</span>
+                </div>
+            </li>
+             <li>
+                <div class="date">Saturday, March 29th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Houston Rockets</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">TBD</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="month-header">February 2025</div>
+        <ul>
+            <li>
+                <div class="date">Friday, February 7th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Denver Nuggets</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">8:00 PM CST</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Sunday, February 9th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. Los Angeles Lakers</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">1:00 PM CST</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Tuesday, February 11th</div>
+                <div>
+                    <span class="band">Oklahoma City Thunder vs. New Orleans Pelicans</span> -
+                    <span class="venue">Paycom Center</span>
+                    <span class="details">7:00 PM CST</span>
+                </div>
+            </li>
+            <li>
+                <div class="date">Wednesday, February 26th</div>
+                <div>
+                    <span class="band">Inside You</span> -
+                    <span class="venue">89th Street</span>
+                    <span class="details">$20, 8pm</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>See venue websites for additional details. For more information: tbone@cont.net</p>
+        </div>
+    </div>
+</body>
+</html>
