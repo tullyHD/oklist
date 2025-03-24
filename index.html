@@ -1,399 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OKHC list of shows</title>
-    <style>
-        body {
-            font-family: monospace;
-            font-size: 8pt;
-            line-height: 1.3;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            background-color: black;
-            color: #cccccc;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events Tracker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 8pt;
+      line-height: 1.3;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-        }
+    .page-container {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+    }
 
-        h1 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 12pt;
-        }
+    /* OKHC Shows Section - Left */
+    .okhc-container {
+      width: 50%;
+      background-color: black;
+      color: #cccccc;
+      font-family: monospace;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
 
-        .month-header {
-            color: white;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 9pt;
-        }
+    .okhc-container h1 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 12pt;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    .okhc-container .month-header {
+      color: white;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 9pt;
+    }
 
-        li {
-            margin-bottom: 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #333;
-        }
+    .okhc-container ul {
+      list-style: none;
+      padding: 0;
+    }
 
-        .date {
-            font-weight: bold;
-            color: white;
-            margin-bottom: 3px;
-        }
+    .okhc-container li {
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333;
+    }
 
-        .band {
-            font-weight: bold;
-        }
+    .okhc-container .date {
+      font-weight: bold;
+      color: white;
+      margin-bottom: 3px;
+    }
 
-        .venue {
-            color: #aaaaaa;
-        }
+    .okhc-container .band {
+      font-weight: bold;
+    }
 
-        .venue a {
-            color: #aaaaaa;
-            text-decoration: none;
-        }
+    .okhc-container .venue {
+      color: #aaaaaa;
+    }
 
-        .venue a:hover {
-            text-decoration: underline;
-        }
+    .okhc-container .venue a {
+      color: #aaaaaa;
+      text-decoration: none;
+    }
 
-        .details {
-            color: #888888;
-            margin-left: 4px;
-        }
+    .okhc-container .venue a:hover {
+      text-decoration: underline;
+    }
 
-        .footer {
-            font-size: 7pt;
-            margin-top: 20px;
-            color: #666666;
-            text-align: center;
-        }
+    .okhc-container .details {
+      color: #888888;
+      margin-left: 4px;
+    }
 
-        @media (max-width: 600px) {
-            body {
-                font-size: 7pt;
-            }
+    .okhc-container .footer {
+      font-size: 7pt;
+      margin-top: 20px;
+      color: #666666;
+      text-align: center;
+    }
 
-            .container {
-                padding: 10px;
-            }
-        }
-    </style>
+    /* Quake Events Section - Right */
+    .quake-container {
+      width: 50%;
+      background-color: white;
+      color: black;
+      font-family: 'VT323', monospace;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 100vh;
+      text-align: left;
+    }
+
+    .quake-container h1 {
+      color: black;
+      margin-bottom: 20px;
+      font-size: 12pt;
+    }
+
+    .quake-container .month-header {
+      color: black;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 9pt;
+    }
+
+    .quake-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .quake-container li {
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid black;
+    }
+
+    .quake-container .date {
+      font-weight: bold;
+      color: black;
+      margin-bottom: 3px;
+    }
+
+    .quake-container .tournament {
+      font-weight: bold;
+    }
+
+    .quake-container .venue {
+      color: black;
+    }
+
+    .quake-container .venue a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .quake-container .venue a:hover {
+      text-decoration: underline;
+      color: black;
+    }
+
+    .quake-container .details {
+      color: black;
+      margin-left: 4px;
+    }
+
+    .quake-container .footer {
+      font-size: 7pt;
+      margin-top: 20px;
+      color: black;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-container {
+        flex-direction: column;
+      }
+      
+      .okhc-container, .quake-container {
+        width: 100%;
+        max-height: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>OKHC list of shows</h1>
+  <div class="page-container">
+    <!-- OKHC Shows - Left Side -->
+    <div class="okhc-container">
+      <h1>OKHC list of shows</h1>
 
-        <div class="month-header">November 2025</div>
-        <ul>
-            <li>
-                <div class="date">Sunday, November 9th</div>
-                <div>
-                    <span class="band">Flyover Fest 2025</span> -
-                    <span class="venue">OKC Farmers Market</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, November 8th</div>
-                <div>
-                    <span class="band">Flyover Fest 2025</span> -
-                    <span class="venue">OKC Farmers Market</span>
-                </div>
-            </li>
-        </ul>
+      <div class="month-header">November 2025</div>
+      <ul>
+          <li>
+              <div class="date">Sunday, November 9th</div>
+              <div>
+                  <span class="band">Flyover Fest 2025</span> -
+                  <span class="venue">OKC Farmers Market</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, November 8th</div>
+              <div>
+                  <span class="band">Flyover Fest 2025</span> -
+                  <span class="venue">OKC Farmers Market</span>
+              </div>
+          </li>
+      </ul>
 
-        <div class="month-header">June 2025</div>
-        <ul>
-            <li>
-                <div class="date">Wednesday, June 25th</div>
-                <div>
-                    <span class="band">Modest Mouse</span> -
-                    <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Sunday, June 15th</div>
-                <div>
-                    <span class="band">Dance Gavin Dance "Return Of The Robot" Tour</span> -
-                    <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-        </ul>
+      <div class="month-header">June 2025</div>
+      <ul>
+          <li>
+              <div class="date">Wednesday, June 25th</div>
+              <div>
+                  <span class="band">Modest Mouse</span> -
+                  <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Sunday, June 15th</div>
+              <div>
+                  <span class="band">Dance Gavin Dance "Return Of The Robot" Tour</span> -
+                  <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
+                  <span class="details">6pm</span>
+              </div>
+          </li>
+      </ul>
 
-        <div class="month-header">May 2025</div>
-        <ul>
-            <li>
-                <div class="date">Thursday, May 29th</div>
-                <div>
-                    <span class="band">Mazenko</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, May 28th</div>
-                <div>
-                    <span class="band">Tough Love</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">9pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Sunday, May 25th</div>
-                <div>
-                    <span class="band">Hold Tight</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Friday, May 23rd</div>
-                <div>
-                    <span class="band">Dredge</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">10pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Monday, May 19th</div>
-                <div>
-                    <span class="band">Inside You</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, May 17th</div>
-                <div>
-                    <span class="band">Eyeless</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, May 14th</div>
-                <div>
-                    <span class="band">Bashed In</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Monday, May 12th</div>
-                <div>
-                    <span class="band">Beach House Live 2025</span> -
-                    <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Monday, May 12th</div>
-                <div>
-                    <span class="band">Dredge</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">3pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, May 7th</div>
-                <div>
-                    <span class="band">Tell Lies</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">830pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Tuesday, May 6th</div>
-                <div>
-                    <span class="band">Killswitch Engage - Tour 2025</span> -
-                    <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, May 3rd</div>
-                <div>
-                    <span class="band">OKHC Showcase: Benefit for The Terry Williams Memorial Scholarship / OKHC Merch Swap</span>
-                    <span class="venue">VFW 9265</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Friday, May 2nd</div>
-                <div>
-                    <span class="band">Time Theft</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-        </ul>
+      <div class="month-header">May 2025</div>
+      <ul>
+          <li>
+              <div class="date">Thursday, May 29th</div>
+              <div>
+                  <span class="band">Mazenko</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">6pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, May 28th</div>
+              <div>
+                  <span class="band">Tough Love</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">9pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Sunday, May 25th</div>
+              <div>
+                  <span class="band">Hold Tight</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">8pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Friday, May 23rd</div>
+              <div>
+                  <span class="band">Dredge</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">10pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Monday, May 19th</div>
+              <div>
+                  <span class="band">Inside You</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, May 17th</div>
+              <div>
+                  <span class="band">Eyeless</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">8pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, May 14th</div>
+              <div>
+                  <span class="band">Bashed In</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">8pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Monday, May 12th</div>
+              <div>
+                  <span class="band">Beach House Live 2025</span> -
+                  <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Monday, May 12th</div>
+              <div>
+                  <span class="band">Dredge</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">3pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, May 7th</div>
+              <div>
+                  <span class="band">Tell Lies</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">830pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Tuesday, May 6th</div>
+              <div>
+                  <span class="band">Killswitch Engage - Tour 2025</span> -
+                  <span class="venue"><a href="https://criterionokc.com/" target="_blank" rel="noopener">The Criterion</a></span>
+                  <span class="details">8pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, May 3rd</div>
+              <div>
+                  <span class="band">OKHC Showcase: Benefit for The Terry Williams Memorial Scholarship / OKHC Merch Swap</span>
+                  <span class="venue">VFW 9265</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Friday, May 2nd</div>
+              <div>
+                  <span class="band">Time Theft</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+      </ul>
 
-        <div class="month-header">April 2025</div>
-        <ul>
-            <li>
-                <div class="date">Wednesday, April 23rd</div>
-                <div>
-                    <span class="band">Mazenko</span>
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">730pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, April 19th</div>
-                <div>
-                    <span class="band">Tell Lies</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">9pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, April 9th</div>
-                <div>
-                    <span class="band">Tough Love</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Sunday, April 6th</div>
-                <div>
-                    <span class="band">Eyeless</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">9pm</span>
-                </div>
-            </li>
-        </ul>
+      <div class="month-header">April 2025</div>
+      <ul>
+          <li>
+              <div class="date">Wednesday, April 23rd</div>
+              <div>
+                  <span class="band">Mazenko</span>
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">730pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, April 19th</div>
+              <div>
+                  <span class="band">Tell Lies</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">9pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, April 9th</div>
+              <div>
+                  <span class="band">Tough Love</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">8pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Sunday, April 6th</div>
+              <div>
+                  <span class="band">Eyeless</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">9pm</span>
+              </div>
+          </li>
+      </ul>
 
-        <div class="month-header">March 2025</div>
-        <ul>
-            <li>
-                <div class="date">Wednesday, March 26th</div>
-                <div>
-                    <span class="band">Hold Tight</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">830pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Friday, March 21st</div>
-                <div>
-                    <span class="band">Inner Self, Open World, Born Savage, Peace Pipe, Tough Love</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">630pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Thursday, March 20th</div>
-                <div>
-                    <span class="band">The Devil Wears Prada Metalcore Spring Break Tour</span> -
-                    <span class="venue"><a href="https://diamondballroom.com/" target="_blank" rel="noopener">Diamond Ballroom</a></span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Thursday, March 20th</div>
-                <div>
-                    <span class="band">Bright Eyes</span> -
-                    <span class="venue"><a href="https://www.cainsballroom.com/" target="_blank" rel="noopener">Cain's Ballroom</a></span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Monday, March 17th</div>
-                <div>
-                    <span class="band">Boltcutter, Forced to Suffer, Impact, Bashed In, Dredge, Blind</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, March 12th</div>
-                <div>
-                    <span class="band">Eyeless</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">7pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, March 8th</div>
-                <div>
-                    <span class="band">Time Theft</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">730pm</span>
-                </div>
-            </li>
-             <li>
-                <div class="date">Saturday, March 1st</div>
-                <div>
-                    <span class="band">KILLJOY, Tough Love, LIFE, ARE!</span> -
-                    <span class="venue">Mass Movement</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, March 1st</div>
-                <div>
-                    <span class="band">DESMADRE, Comeback Kid, Koyo, Inside You, ONE, Chip Mantooth, Shattered Youth</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-           
-            <li>
-                <div class="date">Wednesday, March 5th</div>
-                <div>
-                    <span class="band">Mazenko</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">9pm</span>
-                </div>
-            </li>
-        </ul>
+      <div class="month-header">March 2025</div>
+      <ul>
+          <li>
+              <div class="date">Wednesday, March 26th</div>
+              <div>
+                  <span class="band">Hold Tight</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">830pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Friday, March 21st</div>
+              <div>
+                  <span class="band">Inner Self, Open World, Born Savage, Peace Pipe, Tough Love</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">630pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Thursday, March 20th</div>
+              <div>
+                  <span class="band">The Devil Wears Prada Metalcore Spring Break Tour</span> -
+                  <span class="venue"><a href="https://diamondballroom.com/" target="_blank" rel="noopener">Diamond Ballroom</a></span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Thursday, March 20th</div>
+              <div>
+                  <span class="band">Bright Eyes</span> -
+                  <span class="venue"><a href="https://www.cainsballroom.com/" target="_blank" rel="noopener">Cain's Ballroom</a></span>
+                  <span class="details">6pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Monday, March 17th</div>
+              <div>
+                  <span class="band">Boltcutter, Forced to Suffer, Impact, Bashed In, Dredge, Blind</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">6pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, March 12th</div>
+              <div>
+                  <span class="band">Eyeless</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">7pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, March 8th</div>
+              <div>
+                  <span class="band">Time Theft</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">730pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, March 1st</div>
+              <div>
+                  <span class="band">KILLJOY, Tough Love, LIFE, ARE!</span> -
+                  <span class="venue">Mass Movement</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Saturday, March 1st</div>
+              <div>
+                  <span class="band">DESMADRE, Comeback Kid, Koyo, Inside You, ONE, Chip Mantooth, Shattered Youth</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">6pm</span>
+              </div>
+          </li>
+          <li>
+              <div class="date">Wednesday, March 5th</div>
+              <div>
+                  <span class="band">Mazenko</span> -
+                  <span class="venue">VFW 9265</span>
+                  <span class="details">9pm</span>
+              </div>
+          </li>
+      </ul>
 
-        <div class="month-header">February 2025</div>
-        <ul>
-            <li>
-                <div class="date">Friday, February 28th</div>
-                <div>
-                    <span class="band">Dredge, Bashed In, Septic Mutilation, Nihil, F6</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">630pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Wednesday, February 26th</div>
-                <div>
-                    <span class="band">Tell Lies</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">8pm</span>
-                </div>
-            </li>
-            <li>
-                <div class="date">Saturday, February 22nd</div>
-                <div>
-                    <span class="band">Mazenko, Hold Tight, Eyeless, Tell Lies, Time Theft</span> -
-                    <span class="venue">VFW 9265</span>
-                    <span class="details">6pm</span>
-                </div>
-            </li>
-        </ul>
-
-        <div class="footer">
-            <p>Contact venue for more information.</p>
-        </div>
+      <div class="footer">
+          <p>Contact venue for more information.</p>
+      </div>
     </div>
+
+    <!-- Quake Events - Right Side -->
+    <div class="quake-container">
+      <h1>Quake Events Tracker</h1>
+
+      <!-- August 2025 -->
+      <div class="month-header">August 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, August 29th</div>
+          <div>
+            <span class="tournament">Estoty Duel #165</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, August 22nd</div>
+          <div>
+            <span class="tournament">Estoty Duel #164</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, August 15th</div>
+          <div>
+            <span class="tournament">Estoty Duel #163</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, August 8th</div>
+          <div>
+            <span class="tournament">Estoty Duel #162</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, August 1st</div>
+          <div>
+            <span class="tournament">Estoty Duel #161</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- July 2025 -->
+      <div class="month-header">July 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, July 25th</div>
+          <div>
+            <span class="tournament">Estoty Duel #160</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, July 18th</div>
+          <div>
+            <span class="tournament">Estoty Duel #159</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, July 11th</div>
+          <div>
+            <span class="tournament">Estoty Duel #158</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, July 4th</div>
+          <div>
+            <span class="tournament">Estoty Duel #157</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- June 2025 -->
+      <div class="month-header">June 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, June 27th</div>
+          <div>
+            <span class="tournament">Estoty Duel #156</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, June 20th</div>
+          <div>
+            <span class="tournament">Estoty Duel #155</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, June 13th</div>
+          <div>
+            <span class="tournament">Estoty Duel #154</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, June 6th</div>
+          <div>
+            <span class="tournament">Estoty Duel #153</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- May 2025 -->
+      <div class="month-header">May 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, May 30th</div>
+          <div>
+            <span class="tournament">Estoty Duel #152</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Saturday-Sunday, May 24-25th</div>
+          <div>
+            <span class="tournament">DreamHack Summer 2025</span> -
+            <span class="venue">
+              <a href="https://dreamhack.com/" target="_blank" rel="noopener">Elmia Exhibition Centre, Jönköping, Sweden</a>
+            </span>
+            <span class="details">Quake Champions Duel &amp; 2v2 TDM</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, May 23rd</div>
+          <div>
+            <span class="tournament">Estoty Duel #151</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, May 16th</div>
+          <div>
+            <span class="tournament">Estoty Duel #150</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Sunday, May 11th</div>
+          <div>
+            <span class="tournament">QuakeCon Online Qualifier: Europe</span> -
+            <span class="venue">
+              <a href="https://quakecon.bethesda.net/" target="_blank" rel="noopener">Bethesda.net</a>
+            </span>
+            <span class="details">Quake Champions Duel, Top 4 qualify for QuakeCon 2025</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, May 9th</div>
+          <div>
+            <span class="tournament">Estoty Duel #149</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, May 2nd</div>
+          <div>
+            <span class="tournament">Estoty Duel #148</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- April 2025 -->
+      <div class="month-header">April 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, April 25th</div>
+          <div>
+            <span class="tournament">Estoty Duel #147</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, April 18th</div>
+          <div>
+            <span class="tournament">Estoty Duel #146</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, April 11th</div>
+          <div>
+            <span class="tournament">Estoty Duel #145</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, April 4th</div>
+          <div>
+            <span class="tournament">Estoty Duel #144</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- March 2025 -->
+      <div class="month-header">March 2025</div>
+      <ul>
+        <li>
+          <div class="date">Friday, March 28th</div>
+          <div>
+            <span class="tournament">Estoty Duel #143</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, March 21st</div>
+          <div>
+            <span class="tournament">Estoty Duel #142</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, March 14th</div>
+          <div>
+            <span class="tournament">Estoty Duel #141</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+        <li>
+          <div class="date">Friday, March 7th</div>
+          <div>
+            <span class="tournament">Estoty Duel #140</span> -
+            <span class="venue">Online</span>
+            <span class="details">10am CST</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="footer">
+        <p>To find more Quake tournaments, visit <a href="https://www.reddit.com/r/QuakeChampions/">r/QuakeChampions</a>
+          <br>To stay up-to-date on Quake, visit <a href="https://churchofquake.com/">Church of Quake</a>
+          <br>To track past event, visit <a href="https://www.esportsearnings.com/">Esports Earnings</a>
+          <br>For more esports, visit <a href="https://liquipedia.net/arenafps/">Liquipedia</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
